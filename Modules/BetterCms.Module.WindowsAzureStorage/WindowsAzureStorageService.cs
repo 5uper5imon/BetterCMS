@@ -106,7 +106,7 @@ namespace BetterCms.Module.WindowsAzureStorage
             try
             {
                 var client = cloudStorageAccount.CreateCloudBlobClient();
-                client.ParallelOperationThreadCount = 1;
+                //client.ParallelOperationThreadCount = 1;
 
                 try
                 {
@@ -137,7 +137,7 @@ namespace BetterCms.Module.WindowsAzureStorage
             try
             {
                 var client = cloudStorageAccount.CreateCloudBlobClient();
-                client.ParallelOperationThreadCount = 1;
+                //client.ParallelOperationThreadCount = 1;
 
                 var securityEnabled = accessControlEnabledGlobally && !request.IgnoreAccessControl;
                 var currentContainerName = securityEnabled ? securedContainerName : containerName;
@@ -223,7 +223,7 @@ namespace BetterCms.Module.WindowsAzureStorage
                 var container = client.GetContainerReference(containerName);
                 var destinationBlob = container.GetBlockBlobReference(destinationUri.AbsoluteUri);
 
-                destinationBlob.StartCopyFromBlob(sourceUri, options: new BlobRequestOptions { MaximumExecutionTime = timeout, ServerTimeout = timeout });
+                destinationBlob.StartCopy(sourceUri, options: new BlobRequestOptions { MaximumExecutionTime = timeout, ServerTimeout = timeout });
             }
             catch (Exception e)
             {
@@ -314,7 +314,7 @@ namespace BetterCms.Module.WindowsAzureStorage
             try
             {
                 var client = cloudStorageAccount.CreateCloudBlobClient();
-                client.ParallelOperationThreadCount = 1;
+                //client.ParallelOperationThreadCount = 1;
 
                 var blob = client.GetBlobReferenceFromServer(uri, options: new BlobRequestOptions { MaximumExecutionTime = timeout, ServerTimeout = timeout });
 
